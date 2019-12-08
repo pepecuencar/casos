@@ -1,0 +1,66 @@
+{
+    "paths": [
+        {
+            "name": "/casos",
+            "lambdaFunction": "casosfunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        },
+        {
+            "name": "/fotos",
+            "lambdaFunction": "fotosfunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "casosapi",
+    "apiName": "casosapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "casosfunction"
+        },
+        {
+            "lambdaFunction": "fotosfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 2,
+        "unauth": 0,
+        "authRoleName": "amplify-casos-dev-201729-authRole",
+        "unAuthRoleName": "amplify-casos-dev-201729-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "casosfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "fotosfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
