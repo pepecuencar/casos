@@ -111,10 +111,58 @@ class CaseDetails extends React.Component {
   render() {
     return (
         <Segment>
-          <Header as='h3'>Subir Imagenes </Header>
+          <Header as='h3'>Imagenes </Header>
           <S3ImageUpload photoCaseId={this.props.id}/>
           <PhotosList photos={this.props.caso} />
       </Segment>
+    );
+  }
+}
+
+class SubmitCase extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { submit: false }
+  }
+  
+  handleChange = (event) => {
+    let change = {};
+    change[event.target.name] = event.target.value;
+    this.setState(change);
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const caseName = this.state.caseName;
+    let data = {
+      headers: {
+        'Content-Type': 'application/json'
+      }, body: {
+        name: caseName
+      }
+    }
+    const result = await API.put("casosapi", "/casos/" + this.props.id);
+    console.info('Created case with id: ' + result);
+    this.setState({caseName:''}); 
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        <Form.Button
+          onClick={() => document.getElementById('submit-case').click()}
+          icon='cloud upload'
+          content={ this.state.submit ? 'Enviando...' : 'Enviar Caso' }
+        />
+        <input
+          id='submit-case'
+          type="submit"
+          onChange={this.onChange}
+          style={{ display: 'none' }}
+        />
+        </div>
     );
   }
 }
@@ -247,8 +295,8 @@ class App extends Component {
             <Route path="/" exact component={NewCase}/>
             <Route path="/" exact component={CasesListLoader} /> 
             <Route path="/casos/:caseId" render={ () => <div><NavLink to='/'>Regresar a Mis casos </NavLink></div> }/>
-            <Route path="/casos/:caseId" render={props=> <CaseDetailsLoader id={props.match.params.caseId}/> }
-            />
+            <Route path="/casos/:caseId" render={props=> <CaseDetailsLoader id={props.match.params.caseId}/> }/>
+            <Route path="/casos/:caseId" render={props=> <SubmitCase id={props.match.params.caseId}/>}/>
           </Grid.Column>
         </Grid>
       </Router>
