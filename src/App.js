@@ -39,8 +39,36 @@ class SubmitCase extends React.Component {
         caseStatus: caseStatus
       }
     }
-    const result = await API.post("casosapi", "/casos/"+ this.props.id, data);
+    
+    let dataMC = {
+    headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    
+    let dataLJ = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }, body: {
+        'ManifestS3Uri': 's3://casosimgs201729-dev/filelist.manifest',
+        'LabelingJobName': this.props.id,
+        'S3OutputPath':'s3://casos-labelingjoboutput'
+      }
+    }
+    
+    
+    const resultCaseUpdate = await API.post("casosapi", "/casos/"+ this.props.id, data);
     console.log('Case with id: ' + this.props.id + ' updated ' );
+    
+    const resultLabelingJob = await API.post("casosapi","/labelingjobs", dataLJ);
+    console.log(resultLabelingJob);
+    
+    const resultManifest = await API.get("casosapi", "/manifestcreator", dataMC);
+    console.log(resultManifest);
+    
+    
+    
     this.close()
   }
   

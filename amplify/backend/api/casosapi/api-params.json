@@ -41,6 +41,40 @@
                     "/DELETE"
                 ]
             }
+        },
+        {
+            "name": "/manifestcreator",
+            "lambdaFunction": "manifestcreation",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            }
+        },
+        {
+            "name": "/labelingjobs",
+            "lambdaFunction": "labelingjobs",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            }
         }
     ],
     "resourceName": "casosapi",
@@ -51,11 +85,17 @@
         },
         {
             "lambdaFunction": "fotosfunction"
+        },
+        {
+            "lambdaFunction": "manifestcreation"
+        },
+        {
+            "lambdaFunction": "labelingjobs"
         }
     ],
     "privacy": {
-        "auth": 2,
-        "unauth": 0,
+        "auth": 5,
+        "unauth": 2,
         "authRoleName": "amplify-casos-dev-201729-authRole",
         "unAuthRoleName": "amplify-casos-dev-201729-unauthRole"
     },
@@ -75,6 +115,23 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "manifestcreation",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "labelingjobs",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
-    ]
+    ],
+    "uuid": "d0a47642"
 }

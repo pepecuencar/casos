@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "fotosfunction",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "apisgenerales",
+    "apiName": "apisgenerales",
+    "functionArns": [
+        {
+            "lambdaFunction": "fotosfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-casos-dev-201729-authRole",
+        "unAuthRoleName": "amplify-casos-dev-201729-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "fotosfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "9d29b330"
+}

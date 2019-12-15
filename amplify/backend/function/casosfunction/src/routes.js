@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
 const express = require('express');
 const uuid = require('uuid');
+var axios = require('axios');
 
 let CASO_TABLE = "caso";
 let PHOTO_TABLE= "foto";
