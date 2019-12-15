@@ -26,6 +26,8 @@ router.get('/casos', (req, res) => {
         res.json(result.Items);
     });
 });
+
+
 router.get('/casos/:id', (req, res) => {
     const photoCaseId = req.params.id;
     console.log("photoCaseId : " +photoCaseId );
@@ -67,7 +69,7 @@ router.post('/casos', (req, res) => {
     const createdAt = rightNow.toISOString();
     const updatedAt = createdAt;
     const name = req.body.name;
-    const status =  "Nuevo";
+    const caseStatus =  "Nuevo";
     const owner = req.body.owner;
     const id = uuid.v4();
     const params = {
@@ -91,7 +93,32 @@ router.post('/casos', (req, res) => {
             res.status(201).send(params.Item);
         }   
     });
+} );
+
+router.post('/casos/:id', (req, res) => {
+    const rightNow = new Date();
+    const updatedAt = rightNow.toISOString();
+    const caseStatus = req.body.caseStatus;
+    const id = req.params.id;
+    console.log(id);
+    const params = {
+        TableName: CASO_TABLE,
+        Key:{
+        "id": id
+        },
+        UpdateExpression: "set caseStatus = :caseStatus, updatedAt=:uA",
+        ExpressionAttributeValues:{":caseStatus":caseStatus,":uA":updatedAt},
+        ReturnValues:"UPDATED_NEW"
+    };
+    console.log(params);
+    dynamoDb.update(params, (error, result) => {
+    if (error) {
+        res.status(400).json({ error: 'Could not update Case' });
+      }
+    res.status(200).json({result});
+  });
 });
+
 
 router.delete('/casos/:id', (req, res) => {
     const id = req.params.id;
@@ -108,27 +135,6 @@ router.delete('/casos/:id', (req, res) => {
         res.json({ success: true });
     });
 });
-router.put('/casos', (req, res) => {
-    const id = req.body.id;
-    const name = req.body.name;
-    const status = req.body.status;
-    const rightNow = new Date();
-    const updatedAt = rightNow.toISOString();
-    const params = {
-        TableName: CASO_TABLE,
-        Key: {
-            id
-        },
-        UpdateExpression: 'set #name = :name, #status = :status, #updatedAt = :updatedAt',
-        ExpressionAttributeNames: { '#name': 'name', '#status' : 'status', '#updatedAt' :'updatedAt'},
-        ExpressionAttributeValues: { ':name': name, ':status': status, ':updatedAt':updatedAt },
-        ReturnValues: "ALL_NEW"
-    }
-    dynamoDb.update(params, (error, result) => {
-        if (error) {
-            res.status(400).json({ error: 'Could not update Employee' });
-        }
-        res.json(result.Attributes);
-    })
-});
+
+
 module.exports = router;

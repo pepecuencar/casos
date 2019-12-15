@@ -71,7 +71,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-casos-dev-201729-deployment",
-					"S3Key": "amplify-builds/fotosfunction-46496144346b744d6a49-build.zip"
+					"S3Key": "amplify-builds/fotosfunction-4d672f62715055627552-build.zip"
 				}
 			}
 		},

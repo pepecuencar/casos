@@ -27,6 +27,20 @@
                     "/DELETE"
                 ]
             }
+        },
+        {
+            "name": "/casosadmin",
+            "lambdaFunction": "fotosfunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
         }
     ],
     "resourceName": "casosapi",

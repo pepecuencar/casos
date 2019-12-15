@@ -71,7 +71,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-casos-dev-201729-deployment",
-					"S3Key": "amplify-builds/casosfunction-75715138524a4e2f5431-build.zip"
+					"S3Key": "amplify-builds/casosfunction-466b7059456d42522f41-build.zip"
 				}
 			}
 		},
