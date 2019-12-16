@@ -60,11 +60,11 @@ class SubmitCase extends React.Component {
     const resultCaseUpdate = await API.post("casosapi", "/casos/"+ this.props.id, data);
     console.log('Case with id: ' + this.props.id + ' updated ' );
     
-    const resultManifest = await API.get("casosapi", "/manifestcreator/", dataMC);
+    const resultManifest = await API.post("casosapi", "/manifestcreator", dataLJ);
     console.log(resultManifest);
    
-    const resultLabelingJob = await API.post("casosapi","/labelingjobs/", dataLJ);
-    console.log(resultLabelingJob);
+    //const resultLabelingJob = await API.post("casosapi","/labelingjobs/", dataLJ);
+    //console.log(resultLabelingJob);
   
     this.close()
   }
