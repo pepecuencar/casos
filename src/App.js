@@ -5,6 +5,7 @@ import './App.css';
 import Amplify, { API } from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react';
 import AddCaseView from './views/AddCaseView';
+import AddCaseViewUS from './views/AddCaseViewUS';
 import AdminView from './views/AdminView';
 
 import CaseDetailsLoader from './CaseDetailsLoader';
@@ -96,6 +97,7 @@ class App extends Component {
         <Grid padded>
           <Grid.Column>
             <Route path="/" exact component={AddCaseView}/>
+            <Route path="/us" exact component={AddCaseViewUS}/>
             <Route path="/casos/:caseId" render={ () => <div><NavLink to='/'>Regresar a Mis casos </NavLink></div> }/>
             <Route path="/casos/:caseId" render={props=> <CaseDetailsLoader id={props.match.params.caseId}/> }/>
             <Route path="/casos/:caseId" render={props=> <SubmitCase id={props.match.params.caseId}/>}/>
