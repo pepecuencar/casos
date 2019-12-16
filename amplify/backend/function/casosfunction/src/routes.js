@@ -80,7 +80,7 @@ router.post('/casos', (req, res) => {
             createdAt,
             name,
             owner,
-            status,
+            caseStatus,
             updatedAt
         },
     };

@@ -34,7 +34,7 @@ class SubmitCase extends React.Component {
     const caseStatus = "En Progreso";
     let data = {
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }, body: {
         caseStatus: caseStatus
       }
@@ -42,14 +42,13 @@ class SubmitCase extends React.Component {
     
     let dataMC = {
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     }
     
     let dataLJ = {
     headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
       }, body: {
         'ManifestS3Uri': 's3://casosimgs201729-dev/filelist.manifest',
         'LabelingJobName': this.props.id,
@@ -61,14 +60,12 @@ class SubmitCase extends React.Component {
     const resultCaseUpdate = await API.post("casosapi", "/casos/"+ this.props.id, data);
     console.log('Case with id: ' + this.props.id + ' updated ' );
     
-    const resultLabelingJob = await API.post("casosapi","/labelingjobs", dataLJ);
-    console.log(resultLabelingJob);
-    
-    const resultManifest = await API.get("casosapi", "/manifestcreator", dataMC);
+    const resultManifest = await API.get("casosapi", "/manifestcreator/", dataMC);
     console.log(resultManifest);
-    
-    
-    
+   
+    const resultLabelingJob = await API.post("casosapi","/labelingjobs/", dataLJ);
+    console.log(resultLabelingJob);
+  
     this.close()
   }
   
