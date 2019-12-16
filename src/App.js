@@ -49,6 +49,7 @@ class SubmitCase extends React.Component {
     let dataLJ = {
     headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }, body: {
         'ManifestS3Uri': 's3://casosimgs201729-dev/filelist.manifest',
         'LabelingJobName': this.props.id,
