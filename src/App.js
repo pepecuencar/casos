@@ -58,6 +58,8 @@ class SubmitCase extends React.Component {
       }
     }
     
+    console.log("Datos Para Creacion de Labeling Job");
+    console.log(dataLJ);
     
     const resultCaseUpdate = await API.post("casosapi", "/casos/"+ this.props.id, data);
     console.log('Case with id: ' + this.props.id + ' updated ' );
