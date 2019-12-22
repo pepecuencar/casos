@@ -7,12 +7,55 @@ import { withAuthenticator } from 'aws-amplify-react';
 import AddCaseView from './views/AddCaseView';
 import AddCaseViewUS from './views/AddCaseViewUS';
 import AdminView from './views/AdminView';
+import styled from "@emotion/styled";
 
 import CaseDetailsLoader from './CaseDetailsLoader';
 
 import aws_exports from './aws-exports';
 
 Amplify.configure(aws_exports);
+
+const Title = styled("h1")`
+  text-align: center;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 8px;
+`;
+
+const theme = {
+  formContainer: {
+    margin: 0,
+    padding: "8px 24px 24px"
+  },
+  formSection: {
+    backgroundColor: "#ffffff",
+    borderRadius: "4px"
+  },
+  sectionHeader: {
+    color: "#74b49b"
+  },
+  sectionFooterSecondaryContent: {
+    color: "#303952"
+  },
+  inputLabel: {
+    color: "#74b49b"
+  },
+  input: {
+    backgroundColor: "#f4f9f4",
+    color: "#74b49b"
+  },
+  hint: {
+    color: "#74b49b"
+  },
+  button: {
+    borderRadius: "3px",
+    backgroundColor: "#a7d7c5"
+  },
+  a: {
+    color: "#a7d7c5"
+  }
+};
+
 
 class SubmitCase extends React.Component {
   constructor(props) {
@@ -94,6 +137,7 @@ class App extends Component {
   render(){
     return (
       <Router>
+      <Title>Casos App</Title>
         <Grid padded>
           <Grid.Column>
             <Route path="/" exact component={AddCaseView}/>
@@ -108,4 +152,4 @@ class App extends Component {
     );
   }
 }  
-export default withAuthenticator(App, {includeGreetings: true});
+export default withAuthenticator(App, {includeGreetings: true}, [], null, theme, {});
